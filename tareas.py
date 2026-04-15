@@ -59,7 +59,7 @@ class GestorTareas:
             usuario = self.usuarios.find_one({"email": str(email)})
             if usuario:
                 usuario['email'] = str(usuario['email'])
-            return usuario
+            return usuario["nombre"]
         except Exception as e:
             print(f"Error al iniciar sesión: {e}")
             return None
