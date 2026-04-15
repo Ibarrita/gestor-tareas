@@ -16,9 +16,11 @@ def iniciarsesion():
     if request.method == "POST":
         if username == []:
             username.append(gestor.acceder(request.form["email"]))
-            if username == [None]:
+        elif username == [None]:
                 username = []
                 error = "Error al iniciar sesión."
+        else:
+            error = "Ya tienes una cuenta."
 
 if __name__ == '__main__':
     app.run(debug=True)
