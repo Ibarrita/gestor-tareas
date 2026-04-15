@@ -190,7 +190,7 @@ class GestorTareas:
             self.cliente.close()
             print("🔌 Conexión cerrada")
 
-# Ejemplo de uso
+"""# Ejemplo de uso
 def ejemplo_uso():
     # Inicializar gestor
     gestor = GestorTareas()
@@ -240,4 +240,4 @@ def ejemplo_uso():
     gestor.cerrar_conexion()
 
 if __name__ == "__main__":
-    ejemplo_uso()
+    ejemplo_uso()"""
