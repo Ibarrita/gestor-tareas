@@ -56,9 +56,9 @@ class GestorTareas:
     def acceder(self, email: str) -> Optional[Dict]:
         """Obtener usuario por e-mail"""
         try:
-            usuario = self.usuarios.find_one({"email": ObjectId(email)})
+            usuario = self.usuarios.find_one({"email": str(email)})
             if usuario:
-                usuario['_id'] = str(usuario['email'])
+                usuario['email'] = str(usuario['email'])
             return usuario
         except Exception as e:
             print(f"Error al iniciar sesión: {e}")
