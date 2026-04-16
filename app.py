@@ -15,7 +15,7 @@ def iniciarsesion():
     global username
     if request.method == "POST":
         if username == []:
-            username.append(gestor.acceder(request.form["email"]))
+            username.append(gestor.acceder(request.form["email"], request.form("password")))
         elif username == [None]:
                 username = []
                 error = "Error al iniciar sesión."
