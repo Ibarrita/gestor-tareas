@@ -3,8 +3,10 @@ from pymongo.errors import DuplicateKeyError, ConnectionFailure
 from bson.objectid import ObjectId
 from datetime import datetime, timedelta
 from typing import Optional, List, Dict
+import base64_python
 import os
 
+base64 = base64_python.Base64()
 class GestorTareas:
     def __init__(self, uri: str = 'mongodb://localhost:27017/'):
         """Inicializar conexión a MongoDB"""
@@ -28,14 +30,14 @@ class GestorTareas:
         self.tareas.create_index([("usuario_id", 1), ("fecha_creacion", -1)])
         self.tareas.create_index("estado")
     
-    def crear_usuario(self, nombre: str, email: str) -> Optional[str]:
+    def crear_usuario(self, nombre: str, email: str, password: str) -> Optional[str]:
         """Crear un nuevo usuario"""
         try:
             resultado = self.usuarios.insert_one({
                 "nombre": nombre,
                 "email": email,
-                "fecha_registro": datetime.now(),
-                "activo": True
+                "contraseña": base64.encode(password),
+                "fecha_registro": datetime.now()
             })
             return str(resultado.inserted_id)
         except DuplicateKeyError:
@@ -53,12 +55,13 @@ class GestorTareas:
             print(f"Error al obtener usuario: {e}")
             return None
     
-    def acceder(self, email: str) -> Optional[Dict]:
+    def acceder(self, email: str, password: str) -> Optional[Dict]:
         """Obtener usuario por e-mail"""
         try:
-            usuario = self.usuarios.find_one({"email": str(email)})
+            usuario = self.usuarios.find_one({"email": email, "contraseña": base64.encode(password)})
             if usuario:
                 usuario['email'] = str(usuario['email'])
+                usuario["contraseña"] = str(base64.encode(password))
             return usuario["nombre"]
         except Exception as e:
             print(f"Error al iniciar sesión: {e}")
