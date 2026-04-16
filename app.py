@@ -23,7 +23,7 @@ def iniciarsesion():
             error = "Ya tienes una cuenta."
             
 @app.route('/crearcuenta')
-def index():
+def crearcuenta():
     return render_template("register.html")
 
 @app.route("/registrar", methods=["POST", "GET"])
