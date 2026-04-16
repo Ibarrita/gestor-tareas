@@ -4,10 +4,14 @@
 <h1 class="text-center">Iniciar sesión</h1>
 <p>Debes crear una cuenta y/o iniciar sesión para acceder al gestor de tareas.</p>
 <div class="m-5 p-5 bg-primary-subtle rounded-3">
-    <form action="/iniciarsesion" method="post">
+    <form action="/registrar" method="post">
         <div class="mb-3">
             <label for="email" class="form-label">Correo electrónico</label>
             <input type="email" class="form-control" id="email">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" maxlength="50" class="form-control" id="name">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
@@ -15,6 +19,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
-    <p>¿Nuevo usuario?, <a href="/crearcuenta">¡empieza a crear una cuenta!</a></p>
+    <a>Al terminar de crear la cuenta se te enviara al inicio de sesión.</a>
 </div>
 {% endblock %}
