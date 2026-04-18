@@ -13,4 +13,6 @@ Escuela: CETis 61
 
 Especialidad: Programación
 
+No. control: 24308060610005
+
 ![José](jose.jpg)
