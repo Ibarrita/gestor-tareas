@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center">Tareas</h1>
+<button class="btn btn-primary">Agregar tarea</button>
+<button class="btn btn-primary">Agregar etiqueta</button>
+<button class="btn btn-danger">Eliminar tarea</button>
+<!--Lo de la tabla lo aprendí en freeCodeCamp y la documentación de Bootstrap, no use IA-->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Tareas</th>
+            <th scope="col">Etiqueta</th>
+            <th scope="col">Estado</th>
+        </tr>
+    </thead>
+</table>
+{% endblock %}

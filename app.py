@@ -34,6 +34,10 @@ def registrar():
         return redirect(url_for("iniciarsesion"))
     else:
         error = "No se pudo crear la cuenta"
+        
+@app.route("/gestor")
+def gestor():
+    return render_template("gestor.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
