@@ -7,6 +7,8 @@ gestor = GestorTareas()
 
 @app.route('/')
 def index():
+    if username != []:
+        return redirect(url_for("gestor"))
     return render_template("index.html")
 
 @app.route("/iniciarsesion", methods=["POST", "GET"])
@@ -24,6 +26,8 @@ def iniciarsesion():
             
 @app.route('/crearcuenta')
 def crearcuenta():
+    if username != []:
+        return redirect(url_for("gestor"))
     return render_template("register.html")
 
 @app.route("/registrar", methods=["POST", "GET"])
