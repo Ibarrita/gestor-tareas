@@ -3,7 +3,6 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 username = []
-gestor = GestorTareas()
 
 @app.route('/')
 def index():
@@ -13,6 +12,7 @@ def index():
 
 @app.route("/iniciarsesion", methods=["POST", "GET"])
 def iniciarsesion():
+    gestor = GestorTareas()
     error = None
     global username
     if request.method == "POST":
@@ -33,6 +33,7 @@ def crearcuenta():
 @app.route("/registrar", methods=["POST", "GET"])
 def registrar():
     error = None
+    gestor = GestorTareas()
     if request.method == "POST":
         gestor.crear_usuario(request.form["name"], request.form["email"], request.form["password"])
         return redirect(url_for("iniciarsesion"))
