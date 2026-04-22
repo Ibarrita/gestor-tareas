@@ -35,7 +35,10 @@ def registrar():
     error = None
     gestor = GestorTareas()
     if request.method == "POST":
-        gestor.crear_usuario(request.form["name"], request.form["email"], request.form["password"])
+        name = str(request.form["name"])
+        email = str(request.form["email"])
+        password = str(request.form["password"])
+        gestor.crear_usuario(name, email, password)
         return redirect(url_for("iniciarsesion"))
     else:
         error = "No se pudo crear la cuenta"
