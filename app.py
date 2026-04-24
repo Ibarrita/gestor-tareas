@@ -21,7 +21,7 @@ def iniciarsesion():
         password = str(request.form["password"])
         if username == []:
             username.append(gestor.acceder())
-            return redirect(url_for("iniciarsesion"))
+            return redirect(url_for("gestor"))
         elif username == [None]:
                 username = []
                 error = "Error al iniciar sesión."
