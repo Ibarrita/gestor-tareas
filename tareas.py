@@ -204,16 +204,16 @@ class GestorTareas:
             self.cliente.close()
             print("🔌 Conexión cerrada")
 
-"""# Ejemplo de uso
+# Ejemplo de uso
 def ejemplo_uso():
     # Inicializar gestor
     gestor = GestorTareas()
     
     # Crear usuario
-    usuario_id = gestor.crear_usuario("Ana García", "ana@email.com")
+    usuario_id = gestor.crear_usuario("Ana García", "ana@email.com", "elpepe2009xd")
     print(f"Usuario creado con ID: {usuario_id}")
     
-    if usuario_id:
+    """if usuario_id:
         # Crear tareas
         tarea1 = gestor.crear_tarea(
             usuario_id, 
