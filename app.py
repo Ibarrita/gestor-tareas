@@ -1,5 +1,5 @@
 from tareas import GestorTareas, ejemplo_uso
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
 username = []
@@ -13,20 +13,18 @@ def index():
 @app.route("/iniciarsesion", methods=["POST", "GET"])
 def iniciarsesion():
     gestor = GestorTareas()
-    error = None
     global username
     if request.method == "POST":
-        name = str(request.form["name"])
         email = str(request.form["email"])
         password = str(request.form["password"])
         if username == []:
-            username.append(gestor.acceder())
+            username.append(gestor.acceder(email, password))
             return redirect(url_for("gestor"))
         elif username == [None]:
                 username = []
-                error = "Error al iniciar sesión."
+                flash("Error al iniciar sesión", "error")
         else:
-            error = "Ya tienes una cuenta."
+            flash("Ya tienes una cuenta", "error")
             
 @app.route('/crearcuenta')
 def crearcuenta():
