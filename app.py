@@ -1,4 +1,4 @@
-from tareas import GestorTareas
+from tareas import GestorTareas, ejemplo_uso
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
@@ -16,8 +16,12 @@ def iniciarsesion():
     error = None
     global username
     if request.method == "POST":
+        name = str(request.form["name"])
+        email = str(request.form["email"])
+        password = str(request.form["password"])
         if username == []:
-            username.append(gestor.acceder(request.form["email"], request.form("password")))
+            username.append(gestor.acceder())
+            return redirect(url_for("iniciarsesion"))
         elif username == [None]:
                 username = []
                 error = "Error al iniciar sesión."
@@ -48,4 +52,5 @@ def gestor():
     return render_template("gestor.html")
 
 if __name__ == '__main__':
+    ejemplo_uso
     app.run(debug=True)
