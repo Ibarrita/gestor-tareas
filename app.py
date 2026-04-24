@@ -20,7 +20,7 @@ def iniciarsesion():
         if username == []:
             username.append(gestor.acceder(email, password))
             return redirect(url_for("gestor"))
-        elif username == [None]:
+        elif username == None:
                 username = []
                 flash("Error al iniciar sesión", "error")
         else:
