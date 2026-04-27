@@ -31,7 +31,7 @@ def iniciarsesion():
             
 @app.route('/crearcuenta')
 def crearcuenta():
-    if username != []:
+    if usuario != None:
         return redirect(url_for("gestor"))
     return render_template("register.html")
 
