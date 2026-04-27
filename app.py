@@ -2,29 +2,32 @@ from tareas import GestorTareas, ejemplo_uso
 from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
-username = []
+app.config["SECRET_KEY"] = "secreto"
+usuario = None
 
 @app.route('/')
 def index():
-    if username != []:
+    global usuario
+    if usuario != None:
         return redirect(url_for("gestor"))
     return render_template("index.html")
 
 @app.route("/iniciarsesion", methods=["POST", "GET"])
 def iniciarsesion():
     gestor = GestorTareas()
-    global username
+    global usuario
     if request.method == "POST":
         email = request.form.get("email", "").strip()
         password = request.form.get("password")
-        if username == []:
-            username.append(gestor.acceder(email, password))
+        usuario = gestor.acceder(email, password)
+        if usuario != None:
             return redirect(url_for("gestor"))
-        elif username == None:
-                username = []
-                flash("Error al iniciar sesión", "error")
+        elif usuario == None:
+            flash("Error al iniciar sesión", "error")
+            return redirect(url_for("index"))
         else:
             flash("Ya tienes una cuenta", "error")
+            return redirect(url_for("index"))
             
 @app.route('/crearcuenta')
 def crearcuenta():
@@ -41,7 +44,7 @@ def registrar():
         email = str(request.form["email"])
         password = str(request.form["password"])
         gestor.crear_usuario(name, email, password)
-        return redirect(url_for("iniciarsesion"))
+        return redirect(url_for("index"))
     else:
         error = "No se pudo crear la cuenta"
         

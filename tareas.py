@@ -62,10 +62,10 @@ class GestorTareas:
             if usuario:
                 usuario['email'] = str(usuario['email'])
                 usuario["contraseña"] = str(base64.encode(password))
-            return usuario["nombre"]
+            return usuario
         except Exception as e:
             print(f"Error al iniciar sesión: {e}")
-            return e
+            return None
     
     def crear_tarea(self, usuario_id: str, titulo: str, descripcion: str = "", 
                    fecha_limite: Optional[datetime] = None) -> Optional[str]:
