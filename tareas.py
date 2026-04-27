@@ -65,7 +65,7 @@ class GestorTareas:
             return usuario["nombre"]
         except Exception as e:
             print(f"Error al iniciar sesión: {e}")
-            return None
+            return e
     
     def crear_tarea(self, usuario_id: str, titulo: str, descripcion: str = "", 
                    fecha_limite: Optional[datetime] = None) -> Optional[str]:

@@ -15,8 +15,8 @@ def iniciarsesion():
     gestor = GestorTareas()
     global username
     if request.method == "POST":
-        email = str(request.form["email"])
-        password = str(request.form["password"])
+        email = request.form.get("email", "").strip()
+        password = request.form.get("password")
         if username == []:
             username.append(gestor.acceder(email, password))
             return redirect(url_for("gestor"))
