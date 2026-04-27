@@ -40,18 +40,19 @@ def registrar():
     error = None
     gestor = GestorTareas()
     if request.method == "POST":
-        name = str(request.form["name"])
-        email = str(request.form["email"])
-        password = str(request.form["password"])
+        name = request.form.get("name")
+        email = request.form.get("email")
+        password = request.form.get("password")
         gestor.crear_usuario(name, email, password)
         return redirect(url_for("index"))
     else:
-        error = "No se pudo crear la cuenta"
+        flash("No se pudo crear la cuenta", "error")
+        return redirect(url_for("crearcuenta"))
         
 @app.route("/gestor")
 def gestor():
     return render_template("gestor.html")
 
 if __name__ == '__main__':
-    ejemplo_uso()
+    #ejemplo_uso()
     app.run(debug=True)

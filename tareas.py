@@ -34,6 +34,7 @@ class GestorTareas:
         """Crear un nuevo usuario"""
         try:
             resultado = self.usuarios.insert_one({
+                "_id": ObjectId(),
                 "nombre": nombre,
                 "email": email,
                 "contraseña": base64.encode(password),
