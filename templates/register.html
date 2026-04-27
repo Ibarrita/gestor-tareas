@@ -3,6 +3,17 @@
 {% block content %}
 <h1 class="text-center">Registrarse</h1>
 <p>Debes crear una cuenta y/o iniciar sesión para acceder al gestor de tareas.</p>
+<div class="m-4 bg-danger-subtle rounded-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class=flashes>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+</div>
 <div class="m-5 p-5 bg-primary-subtle rounded-3">
     <form action="/registrar" method="post">
         <div class="mb-3">
